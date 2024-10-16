@@ -20,6 +20,7 @@ public class PhotoAlbumView {
     JButton previous;
     JButton sortByName;
     PhotoAlbumModel model;
+    JLabel fileName;
 
     public PhotoAlbumView(PhotoAlbumModel model) {
         this.model = model;
@@ -44,9 +45,16 @@ public class PhotoAlbumView {
         rightPanel.setBorder(BorderFactory.createTitledBorder("Current Photo"));
         rightPanel.setLayout(null);
 
+        fileName = new JLabel();
+        fileName.setBounds(10, 20, 460, 20);
+        fileName.setHorizontalAlignment(JLabel.CENTER);
+        fileName.setVerticalAlignment(JLabel.TOP);
+
+
         photoLabel = new JLabel("Current Photo");
         photoLabel.setBounds(20, 20, 460, 460);
         rightPanel.add(photoLabel);
+        rightPanel.add(fileName);
 
         frame.add(leftPanel);
         frame.add(rightPanel);
@@ -97,7 +105,7 @@ public class PhotoAlbumView {
                 BufferedImage img = ImageIO.read(new File(currentPhoto.getFilePath()));
                 Image scaledImage = img.getScaledInstance(photoLabel.getWidth(), photoLabel.getHeight(), Image.SCALE_SMOOTH);
                 photoLabel.setIcon(new ImageIcon(scaledImage));
-                photoLabel.setText(photos.get(model.getCurrent()).getName());
+                fileName.setText(currentPhoto.getName());
             } catch (IOException e) {
                 e.printStackTrace();
                 photoLabel.setIcon(null);
