@@ -39,13 +39,6 @@ public class PhotoAlbumController
             }
         });
 
-        view.sortByName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
         view.next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +65,35 @@ public class PhotoAlbumController
                 view.updateView();
 
             }
+        });
+
+        view.sortDropDown.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selection = view.sortDropDown.getSelectedItem().toString();
+                if(selection.equals("Sort By Date"))
+                {
+                    SortingStrategy sortByDate = new SortByDate();
+                    sortByDate.sort(model.getPhotoList());
+                    view.updateView();
+
+
+                }else if(selection.equals("Sort By Name")){
+                    SortingStrategy sortByName = new SortByName();
+                    sortByName.sort(model.getPhotoList());
+                    view.updateView();
+
+                }else if (selection.equals("Sort By Size")){
+                    SortingStrategy sortBySize = new SortBySize();
+                    sortBySize.sort(model.getPhotoList());
+                    view.updateView();
+                }
+            }
+
+
+
+
+
         });
 
 

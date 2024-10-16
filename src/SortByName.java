@@ -12,6 +12,10 @@ public class SortByName implements SortingStrategy {
                 return p1.getName().compareTo(p2.getName());
             }
         });
-        System.out.println("Sorted by size.");
+        System.out.println("Sorted by name.");
+        for(Photo p: photos)
+        {
+            System.out.println(p.getName()+ " ");
+        }
     }
 }

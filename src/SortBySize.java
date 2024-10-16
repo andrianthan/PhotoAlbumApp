@@ -13,5 +13,9 @@ public class SortBySize implements SortingStrategy {
             }
         });
         System.out.println("Sorted by size.");
+        for(Photo p: photos)
+        {
+            System.out.println(p.getName()+ " ");
+        }
     }
 }

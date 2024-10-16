@@ -18,9 +18,9 @@ public class PhotoAlbumView {
     JButton deletePhoto;
     JButton next;
     JButton previous;
-    JButton sortByName;
     PhotoAlbumModel model;
     JLabel fileName;
+    JComboBox<String> sortDropDown;
 
     public PhotoAlbumView(PhotoAlbumModel model) {
         this.model = model;
@@ -71,14 +71,17 @@ public class PhotoAlbumView {
         previous = new JButton("Previous");
         previous.setBounds(450, 520, 100, 30);
 
-        sortByName = new JButton("Sort By Name");
-        sortByName.setBounds(560, 520, 120, 30);
+        //sortByName = new JButton("Sort By Name");
+        //sortByName.setBounds(560, 520, 120, 30);
+        String[] sortBy = {"Sort By Date", "Sort By Name", "Sort By Size"};
+        sortDropDown = new JComboBox<>(sortBy);
+        sortDropDown.setBounds(560, 520, 120, 30);
 
         frame.add(addPhoto);
         frame.add(deletePhoto);
         frame.add(next);
         frame.add(previous);
-        frame.add(sortByName);
+        frame.add(sortDropDown);
 
         frame.setVisible(true);
         frame.revalidate();
@@ -120,6 +123,8 @@ public class PhotoAlbumView {
         photoList.revalidate();
         photoList.repaint();
     }
+
+
 
 
 }

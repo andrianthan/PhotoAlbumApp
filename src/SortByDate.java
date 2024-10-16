@@ -13,5 +13,10 @@ public class SortByDate implements SortingStrategy {
             }
         });
         System.out.println("Sorted by date.");
+        for(Photo p: photos)
+        {
+            System.out.println(p.getName()+ " ");
+        }
+
     }
 }
