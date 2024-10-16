@@ -49,6 +49,13 @@ public class PhotoAlbumController
         view.next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(model.getCurrent() == model.getPhotoList().size() -1)
+                {
+                    model.updateCurrent(0);
+                }else {
+                    model.updateCurrent(model.getCurrent() + 1);
+                }
+                view.updateView();
 
             }
         });
@@ -56,6 +63,13 @@ public class PhotoAlbumController
         view.previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(model.getCurrent() == 0)
+                {
+                    model.updateCurrent(model.getPhotoList().size()-1);
+                }else {
+                    model.updateCurrent(model.getCurrent() -1);
+                }
+                view.updateView();
 
             }
         });

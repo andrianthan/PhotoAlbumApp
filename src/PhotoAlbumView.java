@@ -84,10 +84,12 @@ public class PhotoAlbumView {
         for (Photo photo : photos) {
             sb.append(photo.getName()).append("\n");
         }
+
         photoList.setText(sb.toString());
         Photo currentPhoto = null;
+
         if (!photos.isEmpty()) {
-            currentPhoto = model.getPhoto();
+            currentPhoto = photos.get(model.getCurrent());
         }
 
         if (currentPhoto != null) {
@@ -95,7 +97,7 @@ public class PhotoAlbumView {
                 BufferedImage img = ImageIO.read(new File(currentPhoto.getFilePath()));
                 Image scaledImage = img.getScaledInstance(photoLabel.getWidth(), photoLabel.getHeight(), Image.SCALE_SMOOTH);
                 photoLabel.setIcon(new ImageIcon(scaledImage));
-                photoLabel.setText("");
+                photoLabel.setText(photos.get(model.getCurrent()).getName());
             } catch (IOException e) {
                 e.printStackTrace();
                 photoLabel.setIcon(null);

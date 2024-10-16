@@ -11,7 +11,14 @@ public class PhotoAlbumModel implements Iterable<Photo>{
         photoList = new ArrayList<>();
         current = 0;
     }
-
+    public int getCurrent()
+    {
+        return current;
+    }
+    public void updateCurrent(int current)
+    {
+        this.current = current;
+    }
 
     public void addPhoto(Photo p)
     {
