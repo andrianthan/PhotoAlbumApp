@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public class PhotoAlbumView {
@@ -71,8 +70,6 @@ public class PhotoAlbumView {
         previous = new JButton("Previous");
         previous.setBounds(450, 520, 100, 30);
 
-        //sortByName = new JButton("Sort By Name");
-        //sortByName.setBounds(560, 520, 120, 30);
         String[] sortBy = {"Sort By Date", "Sort By Name", "Sort By Size"};
         sortDropDown = new JComboBox<>(sortBy);
         sortDropDown.setBounds(560, 520, 120, 30);
@@ -103,6 +100,38 @@ public class PhotoAlbumView {
             currentPhoto = photos.get(model.getCurrent());
         }
 
+        if (currentPhoto != null) {
+            try {
+                BufferedImage img = ImageIO.read(new File(currentPhoto.getFilePath()));
+                Image scaledImage = img.getScaledInstance(photoLabel.getWidth(), photoLabel.getHeight(), Image.SCALE_SMOOTH);
+                photoLabel.setIcon(new ImageIcon(scaledImage));
+                fileName.setText(currentPhoto.getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+                photoLabel.setIcon(null);
+                photoLabel.setText("Error loading image");
+            }
+        } else {
+            photoLabel.setIcon(null);
+            photoLabel.setText("No Photo");
+        }
+        photoLabel.revalidate();
+        photoLabel.repaint();
+        photoList.revalidate();
+        photoList.repaint();
+    }
+
+    public void updateSortPhoto()
+    {
+        List<Photo> photos = model.getPhotoList();
+
+        StringBuilder sb = new StringBuilder();
+        for (Photo photo : photos) {
+            sb.append(photo.getName()).append("\n");
+        }
+
+        photoList.setText(sb.toString());
+        Photo currentPhoto = model.getPhotoList().get(0);
         if (currentPhoto != null) {
             try {
                 BufferedImage img = ImageIO.read(new File(currentPhoto.getFilePath()));

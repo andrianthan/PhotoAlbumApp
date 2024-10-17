@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 
 public class PhotoAlbumModel implements Iterable<Photo>{
     private List<Photo> photoList;
@@ -15,6 +17,7 @@ public class PhotoAlbumModel implements Iterable<Photo>{
     {
         return current;
     }
+
     public void updateCurrent(int current)
     {
         this.current = current;
@@ -25,13 +28,17 @@ public class PhotoAlbumModel implements Iterable<Photo>{
         photoList.add(p);
         current = photoList.size() -1;
         notifyView();
-
     }
 
-    public Photo getPhoto()
-    {
-       return photoList.get(photoList.size() -1);
+
+    public Photo getPhoto() {
+        if (photoList.isEmpty() || current < 0 || current >= photoList.size()) {
+            return null;
+        }
+        return photoList.get(current);
     }
+
+
     public void deletePhoto(String name)
     {
         int index = 0;
@@ -50,10 +57,7 @@ public class PhotoAlbumModel implements Iterable<Photo>{
         System.out.println("Photo was not found. Please try again.");
 
 
-
-
     }
-
 
 
     public void next()
@@ -72,17 +76,13 @@ public class PhotoAlbumModel implements Iterable<Photo>{
         {
             return;
         }
-        current = (current - 1) % photoList.size();
+        current = (current - 1 + photoList.size()) % photoList.size();
         notifyView();
-        current = 0;
-
     }
 
     public void notifyView()
     {
-        System.out.print("1\n");
-
-
+        System.out.print("");
     }
 
     public List<Photo> getPhotoList() {
@@ -91,9 +91,49 @@ public class PhotoAlbumModel implements Iterable<Photo>{
 
     @Override
     public Iterator<Photo> iterator() {
-        return photoList.iterator();
+        return new PhotoAlbumIterator();
     }
 
 
+    private class PhotoAlbumIterator implements Iterator<Photo>{
+        private int index = 0;
+        @Override
+        public boolean hasNext(){
+            if(index < photoList.size())
+            {
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public boolean hasPrevious()
+        {
+            return index > 0;
+        }
+        @Override
+        public Photo next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            System.out.println("prev");
+            return photoList.get(index++);
+        }
+
+        public Photo previous() {
+            if (!hasPrevious()) {
+                throw new NoSuchElementException();
+            }
+            return photoList.get(--index);
+        }
+
+        @Override
+        public void remove() {
+            if (index <= 0) {
+                throw new IllegalStateException("You cannot remove an item");
+            }
+            photoList.remove(--index);
+        }
+    }
     }
 

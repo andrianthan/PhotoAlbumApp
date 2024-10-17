@@ -9,9 +9,10 @@ public class SortByDate implements SortingStrategy {
         Collections.sort(photos, new Comparator<Photo>() {
             @Override
             public int compare(Photo p1, Photo p2) {
-                return p1.getDateAdded().compareTo(p2.getDateAdded());  // Sort by date
+                return p1.getDateAdded().compareTo(p2.getDateAdded());
             }
         });
+
         System.out.println("Sorted by date.");
         for(Photo p: photos)
         {

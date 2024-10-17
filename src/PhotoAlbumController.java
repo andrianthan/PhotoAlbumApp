@@ -42,26 +42,17 @@ public class PhotoAlbumController
         view.next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(model.getCurrent() == model.getPhotoList().size() -1)
-                {
-                    model.updateCurrent(0);
-                }else {
-                    model.updateCurrent(model.getCurrent() + 1);
-                }
+                model.next();
                 view.updateView();
 
             }
         });
 
+
         view.previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(model.getCurrent() == 0)
-                {
-                    model.updateCurrent(model.getPhotoList().size()-1);
-                }else {
-                    model.updateCurrent(model.getCurrent() -1);
-                }
+                model.previous();
                 view.updateView();
 
             }
@@ -75,26 +66,20 @@ public class PhotoAlbumController
                 {
                     SortingStrategy sortByDate = new SortByDate();
                     sortByDate.sort(model.getPhotoList());
-                    view.updateView();
-
+                    view.updateSortPhoto();
 
                 }else if(selection.equals("Sort By Name")){
                     SortingStrategy sortByName = new SortByName();
                     sortByName.sort(model.getPhotoList());
-                    view.updateView();
-
+                    view.updateSortPhoto();
                 }else if (selection.equals("Sort By Size")){
                     SortingStrategy sortBySize = new SortBySize();
                     sortBySize.sort(model.getPhotoList());
-                    view.updateView();
+                    view.updateSortPhoto();
                 }
             }
-
-
-
-
-
         });
+
 
 
     }
