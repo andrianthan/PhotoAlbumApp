@@ -2,7 +2,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Sorts the photo album by the size of photos.
+ */
 public class SortBySize implements SortingStrategy {
+
+
+    /**
+     * Takes a photo album and sorts the photos by size, from smallest to largest.
+     * @param photos
+     */
 
     @Override
     public void sort(List<Photo> photos) {

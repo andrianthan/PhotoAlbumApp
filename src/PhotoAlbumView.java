@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Represents the view of a photo album application.
+ * Manages the display of photos and list of photos in the album.
+ */
 public class PhotoAlbumView {
 
     JFrame frame;
@@ -20,6 +24,14 @@ public class PhotoAlbumView {
     PhotoAlbumModel model;
     JLabel fileName;
     JComboBox<String> sortDropDown;
+
+
+    /**
+     * Represents the PhotoAlbumView object
+     * Manages the display of photos and functionalities to add, delete, and navigate through photos
+     * in the album.
+     * @param model
+     */
 
     public PhotoAlbumView(PhotoAlbumModel model) {
         this.model = model;
@@ -85,6 +97,10 @@ public class PhotoAlbumView {
         frame.repaint();
     }
 
+
+    /**
+     * Updates the view of the Photo Album application by updating the photo on display and photo album list.
+     */
     public void updateView() {
         List<Photo> photos = model.getPhotoList();
 
@@ -121,6 +137,9 @@ public class PhotoAlbumView {
         photoList.repaint();
     }
 
+    /**
+     * Updates the view of the photo album list and the photo on display when a sorting method is used.
+     */
     public void updateSortPhoto()
     {
         List<Photo> photos = model.getPhotoList();

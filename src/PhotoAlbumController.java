@@ -4,12 +4,23 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.*;
 
+/**
+ * Initializes a controller for the photo album application.
+ * Manages user interactions with the model and view components.
+ * Handles actions which include adding photos, deleting photos,
+ * navigating to next photo, navgiating to previous photo, sorting photos.
+ */
 public class PhotoAlbumController
 {
-
-    private PhotoAlbumView view;
+    /**
+     * Constructs a PhotoAlbumController object with a PhotoAlbumModel and PhotoAlbumView object
+     * @param model
+     * @param view
+     */
     public PhotoAlbumController(PhotoAlbumModel model, PhotoAlbumView view)
     {
+
+        //Action Listener for adding photos
         view.addPhoto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,6 +41,8 @@ public class PhotoAlbumController
             }
         });
 
+
+        //Action Listener for deleting photos
         view.deletePhoto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,6 +52,7 @@ public class PhotoAlbumController
             }
         });
 
+        //Action Listener for navigating to next photo
         view.next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +63,7 @@ public class PhotoAlbumController
         });
 
 
+        //Action Listener for navigating to the previous photo
         view.previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +73,7 @@ public class PhotoAlbumController
             }
         });
 
+        //Action Listener for sorting photos
         view.sortDropDown.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
