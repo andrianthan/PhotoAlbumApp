@@ -22,6 +22,11 @@ public class PhotoAlbumController
 
         //Action Listener for adding photos
         view.addPhoto.addActionListener(new ActionListener() {
+
+            /**
+             * Takes in a photo file input and adds it to the photo album
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
@@ -44,6 +49,11 @@ public class PhotoAlbumController
 
         //Action Listener for deleting photos
         view.deletePhoto.addActionListener(new ActionListener() {
+
+            /**
+             * Deletes a photo from the photo album.
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 String response = JOptionPane.showInputDialog("Please enter photo name to delete");
@@ -54,6 +64,12 @@ public class PhotoAlbumController
 
         //Action Listener for navigating to next photo
         view.next.addActionListener(new ActionListener() {
+
+            /**
+             * Iterates to the next photo in the photo album.
+             * @param e the event to be processed
+             */
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.next();
@@ -65,16 +81,27 @@ public class PhotoAlbumController
 
         //Action Listener for navigating to the previous photo
         view.previous.addActionListener(new ActionListener() {
+
+            /**
+             * Iterates to the previous photo in the photo album.
+             * @param e the event to be processed
+             */
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.previous();
                 view.updateView();
-
             }
         });
 
         //Action Listener for sorting photos
         view.sortDropDown.addActionListener(new ActionListener(){
+
+            /**
+             * Sorts the photos in the photo album based on the selected choice.
+             * @param e the event to be processed
+             */
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selection = view.sortDropDown.getSelectedItem().toString();

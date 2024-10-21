@@ -137,7 +137,6 @@ public class PhotoAlbumModel implements Iterable<Photo>{
     private class PhotoAlbumIterator implements Iterator<Photo>{
         private int index = 0;
 
-
         /**
          * Returns true if iterator has more photos.
          * @return true if iterator has more succeeding photos
@@ -151,8 +150,6 @@ public class PhotoAlbumModel implements Iterable<Photo>{
                 return false;
             }
         }
-
-
         /**
          * Checks if there is a previous photo in the list.
          *
